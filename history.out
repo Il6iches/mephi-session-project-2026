@@ -44,49 +44,50 @@
    44  chmod u-s /usr/sbin/tcpdump
    45  setcap cap_net_raw,cap_net_admin=eip /usr/sbin/tcpdump
    46  getcap /usr/sbin/tcpdump
-   47  getenforce
-   48  semanage fcontext -a -t httpd_sys_content_t "/mephi-web(/.*)?"
-   49  restorecon -Rv /mephi-web
-   50  nano /etc/nginx/nginx.conf
-   51  nginx -t && systemctl reload nginx
-   52  nano /etc/pam.d/login
-   53  nano /etc/security/access.conf
-   54  cat << 'EOF' >> /etc/security/access.conf
+   47  sudo -u user1 tcpdump -c 2 -i any
+   48  getenforce
+   49  semanage fcontext -a -t httpd_sys_content_t "/mephi-web(/.*)?"
+   50  restorecon -Rv /mephi-web
+   51  nano /etc/nginx/nginx.conf
+   52  nginx -t && systemctl reload nginx
+   53  nano /etc/pam.d/login
+   54  nano /etc/security/access.conf
+   55  cat << 'EOF' >> /etc/security/access.conf
 - : (curators) : LOCAL
 EOF
 
-   55  nano /etc/login.defs
-   56  sed -i 's/^PASS_MAX_DAYS.*/PASS_MAX_DAYS   90/' /etc/login.defs
-   57  chage -M 90 user1
-   58  chage -M 90 user2
-   59  chage -M 90 user3
-   60  chage -M 90 curator1
-   61  chage -M 90 curator2
-   62  nano /etc/security/pwquality.conf
-   63  STUDENT_ID="372997"
-   64  echo "Hello from Student: ${STUDENT_ID}" > /mephi-web/index.html
-   65  chmod 644 /mephi-web/index.html
-   66  restorecon -v /mephi-web/index.html
-   67  curl http://localhost/
-   68  mkdir -p ~/project-artifacts
-   69  cd ~/project-artifacts
-   70  ping -c 4 8.8.8.8 > ~/ping.out
-   71  cp ~/ping.out ./ping.out
-   72  stat /data/mephi-2026 > ~/stat.out
-   73  stat /mephi-web >> ~/stat.out
-   74  cp ~/stat.out ./stat.out
-   75  getcap /usr/sbin/tcpdump > ~/getcap.out
-   76  cp ~/getcap.out ./getcap.out
-   77  dnf history > ~/dnf.out
-   78  cp ~/dnf.out ./dnf.out
-   79  journalctl -u nginx -b > ~/journalctl.out
-   80  cp ~/journalctl.out ./journalctl.out
-   81  getenforce > ~/getenforce.out
-   82  cp ~/getenforce.out ./getenforce.out
-   83  curl http://localhost/ > curl.out
-   84  cp /etc/fstab ./fstab
-   85  cp /etc/passwd ./passwd
-   86  cp /etc/shadow ./shadow
-   87  cp /etc/group ./group
+   56  nano /etc/login.defs
+   57  sed -i 's/^PASS_MAX_DAYS.*/PASS_MAX_DAYS   90/' /etc/login.defs
+   58  chage -M 90 user1
+   59  chage -M 90 user2
+   60  chage -M 90 user3
+   61  chage -M 90 curator1
+   62  chage -M 90 curator2
+   63  nano /etc/security/pwquality.conf
+   64  STUDENT_ID="372997"
+   65  echo "Hello from Student: ${STUDENT_ID}" > /mephi-web/index.html
+   66  chmod 644 /mephi-web/index.html
+   67  restorecon -v /mephi-web/index.html
+   68  curl http://localhost/
+   69  mkdir -p ~/project-artifacts
+   70  cd ~/project-artifacts
+   71  ping -c 4 8.8.8.8 > ~/ping.out
+   72  cp ~/ping.out ./ping.out
+   73  stat /data/mephi-2026 > ~/stat.out
+   74  stat /mephi-web >> ~/stat.out
+   75  cp ~/stat.out ./stat.out
+   76  getcap /usr/sbin/tcpdump > ~/getcap.out
+   77  cp ~/getcap.out ./getcap.out
+   78  dnf history > ~/dnf.out
+   79  cp ~/dnf.out ./dnf.out
+   80  journalctl -u nginx -b > ~/journalctl.out
+   81  cp ~/journalctl.out ./journalctl.out
+   82  getenforce > ~/getenforce.out
+   83  cp ~/getenforce.out ./getenforce.out
+   84  curl http://localhost/ > curl.out
+   85  cp /etc/fstab ./fstab
+   86  cp /etc/passwd ./passwd
+   87  cp /etc/shadow ./shadow
+   88  cp /etc/group ./group
    88  cp /etc/security/pwquality.conf ./pwquality.conf
    89  history > ~/history.out
