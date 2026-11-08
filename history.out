@@ -90,3 +90,17 @@ EOF
    87  cp /etc/group ./group
    88  cp /etc/security/pwquality.conf ./pwquality.conf
    89  history > ~/history.out
+   90  cp ~/history.out ./history.out
+   91  dnf install -y git
+   92  git config --global user.name "Il6iches"
+   93  git config --global user.email "hotpukkan@gmail.com"
+   94  git init
+   95  git branch -M main
+   96  git add .
+   97  git commit -m "project artifacts and system configs"
+   98  git remote add origin https://github.com/Il6iches/mephi-session-project-2026
+   99  git push -u origin main
+  100  git push -u origin main
+  101  ls
+  102  history -a
+  103  history > ~/project-artifacts/history.out
